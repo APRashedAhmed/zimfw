@@ -12,7 +12,11 @@ function {
 }
 
 prompt_minimal_user() {
-  print -n '%(!.${ON_COLOR}.${OFF_COLOR})${PROMPT_CHAR}'
+  local segment=''
+  if [[ ${USER} != ${DEFAULT_USER} ]]; then
+    segment+='${ON_COLOR}${USER}@%m'
+  fi
+  print -n ${segment}
 }
 
 prompt_minimal_jobs() {
@@ -75,8 +79,7 @@ prompt_minimal_setup() {
     'prompt' '%b%c' \
     'color' '$(coalesce "%D" "%V" "%B" "%A" "${ON_COLOR}")'
 
-  # PROMPT="$(prompt_minimal_user)$(prompt_minimal_jobs)$(prompt_minimal_status)%f "
-  PROMPT="$(prompt_minimal_jobs)$(prompt_minimal_status)%f "
+  PROMPT="$(prompt_minimal_user)$(prompt_minimal_jobs)$(prompt_minimal_status)%f "
   RPROMPT='$(prompt_minimal_path)$(prompt_minimal_conda)$(prompt_minimal_git)'
 }
 

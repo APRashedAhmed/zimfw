@@ -11,6 +11,12 @@ function endworkon() {
   rm ~/.workon_projects/$1
 }
 
+function listworkon() {
+  ll ~/.workon_projects/
+}
+
+
 alias wo='workon'
 alias swo='startworkon'
 alias ewo='endworkon'
+alias lwo='listworkon'

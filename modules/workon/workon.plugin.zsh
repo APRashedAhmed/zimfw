@@ -7,6 +7,10 @@ function startworkon() {
   ln -s $2 ~/.workon_projects/$1
 }
 
-function stopworkon() {
+function endworkon() {
   rm ~/.workon_projects/$1
 }
+
+alias wo='workon'
+alias swo='startworkon'
+alias ewo='endworkon'

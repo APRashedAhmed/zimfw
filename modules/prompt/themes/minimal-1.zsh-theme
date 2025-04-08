@@ -15,6 +15,16 @@ prompt_minimal_user() {
   local segment=''
   if [[ ${USER} != ${DEFAULT_USER} ]]; then
     segment+='${ON_COLOR}${USER}@%m'
+  else
+      for host in "${DEFAULT_HOSTS[@]}"; do
+	  if [[ $host == $HOSTNAME ]]; then
+              found=1
+              break
+	  fi
+      done
+      if [[ $found -eq 0 ]]; then
+	  segment+='${ON_COLOR}${USER}@%m'
+      fi
   fi
   print -n ${segment}
 }
